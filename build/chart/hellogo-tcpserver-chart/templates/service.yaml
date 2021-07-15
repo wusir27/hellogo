@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "hellogo-tcpserver-chart.fullname" . }}
+  labels:
+{{ include "hellogo-tcpserver-chart.labels" . | indent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.externalPort }}
+      targetPort: {{ .Values.service.internalPort }}
+      protocol: TCP
+      name: tcp
+  selector:
+    app.kubernetes.io/name: {{ include "hellogo-tcpserver-chart.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
