@@ -1,5 +1,5 @@
 SHELL:=/bin/sh
-.PHONY: build build_server clean fmt
+.PHONY: build clean fmt
 
 export GO111MODULE=on
 
